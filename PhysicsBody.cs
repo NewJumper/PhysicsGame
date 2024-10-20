@@ -43,6 +43,19 @@ public class PhysicsBody {
 
     public void Draw() {
         Update();
+
+        if (Program.selected == this) {
+            Raylib.DrawCircleV(position, radius + 3, color);
+            Raylib.DrawCircleV(position, radius + 2, Program.WindowBgColor);
+        }
         Raylib.DrawCircleV(position, radius, color);
+    }
+
+    public Vector2 GetVelocity() {
+        return velocity;
+    }
+
+    public bool Hovering(Vector2 mousePosition) {
+        return Math.Pow(mousePosition.X - position.X, 2) + Math.Pow(mousePosition.Y - position.Y, 2) <= radius * radius;
     }
 }
